@@ -10,7 +10,7 @@ Check list of tools that we will install:
 
 1. Install i3wm + i3blocks
 
-2. lightdm + lightdm-gtk-greeter
+2. lightdm + lightdm-webkit2-greeter + webkit2gtk
 
 2. Install and set up polybar
 
@@ -52,37 +52,51 @@ Install dmenu (we will later change this for Rofi)
 sudo pacman -S dmenu
 ```
 
-## Step 2: Install lightdm + lightdm-gtk-greeter
+## Step 2: Install lightdm + lightdm-webkit2-greeter + webkit2gtk
 
-Installing lightdm + lightdm-gtk-greeter
+Installing lightdm + lightdm-webkit2-greeter + webkit2gtk
+
+**Install lightdm:**
 
 ```bash
-sudo pacman -S lightdm lightdm-gtk-greeter 
+sudo pacman -S lightdm
 ```
 
-Enable lightdm
+**Install lightdm-webkit2-greeter:**
+
+```bash
+yay -S lightdm-webkit2-greeter
+```
+
+**Install webkit2gtk dependency:**
+
+```bash
+sudo pacman -S webkit2gtk
+```
+
+**Enable lightdm:**
 
 ```bash
 sudo systemctl enable lightdm
 ```
 
-configure lightdm
+**Configure lightdm.conf file:**
 
 ```bash
 sudo vim /etc/lightdm/lightdm.conf
 ```
 
-Find and modify these lines:
+**Find and modify these lines:**
 
 ```ini
 [Seat:*]
 #greeter-session=example-gtk-gnome
-greeter-session=lightdm-gtk-greeter
+greeter-session=lightdm-webkit2-greeter
 #user-session=default
 user-session=i3
 ```
 
-Start lightdm
+**Start lightdm:**
 
 ```bash
 sudo systemctl start lightdm
