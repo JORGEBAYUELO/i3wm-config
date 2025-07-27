@@ -105,10 +105,46 @@ sudo systemctl start lightdm
 
 ## Step 3: Install and set up Picom
 
+### Step 3.1: Install Picom
+
 **Install Picom:**
 
 ```bash
 sudo pacman -S picom
 ```
+
+### Step 3.2: Set up Picom
+
+**Setting up picom:**
+
+Create the picom folder in the .config directory
+
+```bash
+mkdir -p ~/.config/picom/
+```
+
+Copy the default configuration file
+
+```bash
+cp /etc/xdg/picom.conf ~/.config/picom/picom.conf
+```
+
+### Step 3.3: Add picom to the i3wm
+
+To have Picom automatically launch when you start your window manager, add the following line to the i3 configuration file.
+
+**Edit the i3 config file:**
+
+```bash
+vim .config/i3/config
+```
+
+**Add the following line to the configuration**
+
+```ini
+exec_always --no-startup-id picom -b
+```
+
+Now reload the i3 configuration by pressing `$mod+Shift+r`.
 
 
