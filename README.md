@@ -10,27 +10,27 @@ Check list of tools that we will install:
 
 1. Install i3wm + i3blocks
 
-2. lightdm + lightdm-webkit2-greeter + webkit2gtk
+2. Install and set up lightdm + lightdm-webkit2-greeter + webkit2gtk
 
-2. Install and set up polybar
+3. Install and set up polybar
 
-3. Install and setup up picom for compositing
+4. Install and setup up picom for compositing
 
-4. Install and set up Rofi as launcher
+5. Install and set up Rofi as launcher
 
-5. Install and set up dunst for notification system
+6. Install and set up dunst for notification system
 
-6. Use feh or nitrigen for wallpapers
+7. Use feh or nitrigen for wallpapers
 
-7. Set up NetworkManager + nm-applet
+8. Set up NetworkManager + nm-applet
 
-8. Configure dual monitors with arandr (for dual monitor setups)
+9. Configure dual monitors with arandr (for dual monitor setups)
 
-9. Install thunar + file manager plugins
+10. Install thunar + file manager plugins
 
-10. Set up polkit-gnome and gnome-keyring
+11. Set up polkit-gnome and gnome-keyring
 
-11. Theme everything with lxappearance
+12. Theme everything with lxappearance
 
 ## Step 1: Installing i3
 
@@ -52,9 +52,9 @@ Install dmenu (we will later change this for Rofi)
 sudo pacman -S dmenu
 ```
 
-## Step 2: Install lightdm + lightdm-webkit2-greeter + webkit2gtk
+## Step 2: Install and set up lightdm + lightdm-webkit2-greeter + webkit2gtk
 
-Installing lightdm + lightdm-webkit2-greeter + webkit2gtk
+### Step 2.1: Installing lightdm + lightdm-webkit2-greeter + webkit2gtk
 
 **Install lightdm:**
 
@@ -74,12 +74,7 @@ yay -S lightdm-webkit2-greeter
 sudo pacman -S webkit2gtk
 ```
 
-**Enable lightdm:**
-
-```bash
-sudo systemctl enable lightdm
-```
-
+### Step 2.2: Configure lightdm.conf
 **Configure lightdm.conf file:**
 
 ```bash
@@ -94,6 +89,12 @@ sudo vim /etc/lightdm/lightdm.conf
 greeter-session=lightdm-webkit2-greeter
 #user-session=default
 user-session=i3
+```
+
+**Enable lightdm:**
+
+```bash
+sudo systemctl enable lightdm
 ```
 
 **Start lightdm:**
