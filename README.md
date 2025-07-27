@@ -202,4 +202,36 @@ Now let's add polybar `launch.sh` script to the `i3` config file
 exec_always --no-startup-id ~/.config/polybar/launch.sh 
 ```
 
+## Step 5: Install and set up Rofi
+
+### Step 5.1: Install Rofi
+
+**Installing rofi:**
+
+```bash
+sudo pacman -S rofi
+```
+
+### Step 5.2: Set up Rofi
+
+**Create rofi directory:**
+
+```bash
+mkdir -p ~/.config/rofi
+```
+
+**Create your customization in config.rasi file**
+
+```bash
+touch ~/.config/rofi/config.rasi
+touch ~/.config/rofi/colors.rasi
+```
+
+**Bind rofi in your i3wm config:**
+
+```ini
+# start rofi (a more modern launcher)
+bindsym $mod+d exec --no-startup-id rofi -show drun
+```
+
 
