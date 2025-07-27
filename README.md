@@ -12,9 +12,9 @@ Check list of tools that we will install:
 
 2. Install and set up lightdm + lightdm-webkit2-greeter + webkit2gtk
 
-3. Install and set up polybar
+3. Install and setup up picom for compositing
 
-4. Install and setup up picom for compositing
+4. Install and set up polybar
 
 5. Install and set up Rofi as launcher
 
@@ -102,3 +102,13 @@ sudo systemctl enable lightdm
 ```bash
 sudo systemctl start lightdm
 ```
+
+## Step 3: Install and set up Picom
+
+**Install Picom:**
+
+```bash
+sudo pacman -S picom
+```
+
+
