@@ -147,4 +147,59 @@ exec_always --no-startup-id picom -b
 
 Now reload the i3 configuration by pressing `$mod+Shift+r`.
 
+## Step 4: Install and set up Polybar
+
+### Step 4.1: Install Polybar
+
+**Installing polybar:**
+
+```bash
+sudo pacman -S polybar
+```
+
+### Step 4.2: Setting up Polybar
+
+**Setting up polybar:**
+
+Create the polybar folder in the .config directory
+
+```bash
+mkdir -p ~/.config/polybar/
+```
+
+Copy the default configuration file
+
+```bash
+cp /etc/polybar/config.ini ~/.config/polybar/config.ini
+```
+
+Create a script to launch polybar with i3wm
+
+```bash
+touch ~/.config/polybar/launch.sh
+```
+
+Open the `launch.sh` file and paste the following configuration
+
+```bash
+#!/usr/bin/env bash
+
+# Terminate already running bar instances
+killall -q polybar
+# If your bars have ipc enabled, you can also use 
+# polybar-msg cmd quit
+
+# Launch Polybar
+echo "---" | tee -a /tmp/polybar1.log
+polybar main 2>&1 | tee -a /tmp/polybar1.log & disown
+
+echo "Polybar launched..."
+```
+
+Now let's add polybar `launch.sh` script to the `i3` config file
+
+```ini
+exec_always --no-startup-id ~/.config/polybar/launch.sh 
+```
+
 
