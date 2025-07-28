@@ -20,7 +20,7 @@ Check list of tools that we will install:
 
 6. Install and set up dunst for notification system
 
-7. Use feh or nitrigen for wallpapers
+7. Install and set up feh for wallpapers
 
 8. Set up NetworkManager + nm-applet
 
@@ -275,6 +275,24 @@ Add this to your `~/.config/i3/config`:
 ```bash
 # Start dunst notification daemon
 exec --no-startup-id dunst
+```
+
+## Step 7: Install and set up `Feh` for wallpapers
+
+### Step 7.1: Install `Feh`
+
+**Installing feh**
+
+```bash
+sudo pacman -S feh
+```
+
+### Step 7.2: Add `Feh` to your i3 config file
+
+**Adding feh to i3**
+
+```ini
+exec_always feh --bg-scale ~/.config/wallpapers/wallpaper-theme-converter.png
 ```
 
 
