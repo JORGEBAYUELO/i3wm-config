@@ -32,7 +32,9 @@ Check list of tools that we will install:
 
 12. Theme everything with lxappearance
 
-## Step 1: Installing i3
+---
+
+## Step 1: Installing `i3wm`
 
 In my case, I'm using **Arch Linux**
 
@@ -52,7 +54,7 @@ Install dmenu (we will later change this for Rofi)
 sudo pacman -S dmenu
 ```
 
-## Step 2: Install and set up lightdm + lightdm-webkit2-greeter + webkit2gtk
+## Step 2: Install and set up `lightdm + lightdm-webkit2-greeter + webkit2gtk`
 
 ### Step 2.1: Installing lightdm + lightdm-webkit2-greeter + webkit2gtk
 
@@ -103,7 +105,7 @@ sudo systemctl enable lightdm
 sudo systemctl start lightdm
 ```
 
-## Step 3: Install and set up Picom
+## Step 3: Install and set up `Picom`
 
 ### Step 3.1: Install Picom
 
@@ -147,7 +149,7 @@ exec_always --no-startup-id picom -b
 
 Now reload the i3 configuration by pressing `$mod+Shift+r`.
 
-## Step 4: Install and set up Polybar
+## Step 4: Install and set up `Polybar`
 
 ### Step 4.1: Install Polybar
 
@@ -202,7 +204,7 @@ Now let's add polybar `launch.sh` script to the `i3` config file
 exec_always --no-startup-id ~/.config/polybar/launch.sh 
 ```
 
-## Step 5: Install and set up Rofi
+## Step 5: Install and set up `Rofi`
 
 ### Step 5.1: Install Rofi
 
@@ -232,6 +234,47 @@ touch ~/.config/rofi/colors.rasi
 ```ini
 # start rofi (a more modern launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun
+```
+
+## Step 6: Install and set up `Dunst` for notification system
+
+### Step 6.1: Install `Dunst`
+
+**Installing dunst:**
+
+```bash
+sudo pacman -S dunst
+```
+
+### Step 6.2: Set up `Dunst`
+
+**Setting up dunst:**
+
+Create dunst config directory
+
+```bash
+mkdir -p ~/.config/dunst/
+```
+
+Copy dunst default config
+
+```bash
+cp /etc/dunst/dunstrc ~/.config/dunst/dunstrc
+```
+
+Edit the config file to create your personal customization
+
+```bash
+vim ~/.config/dunst/dunstrc
+```
+
+### Step 6.3: Start Dunst in i3 Config
+
+Add this to your `~/.config/i3/config`:
+
+```bash
+# Start dunst notification daemon
+exec --no-startup-id dunst
 ```
 
 
