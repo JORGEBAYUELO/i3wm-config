@@ -685,4 +685,8 @@ bindsym $mod+Shift+Print exec --no-startup-id flameshot full -p ~/Pictures/Scree
 exec --no-startup-id flameshot
 ```
 
+Reload i3 configuration:
 
+```bash
+$mod+Shift+r
+```
