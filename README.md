@@ -295,4 +295,71 @@ sudo pacman -S feh
 exec_always feh --bg-scale ~/.config/wallpapers/wallpaper-theme-converter.png
 ```
 
+## Step 8: Set up `NetworkManager + nm-applet`
+
+### Step 8.1: Install NetworkManagement
+
+**Installing networkmanagement:**
+
+```bash
+# Install NetworkManager and system tray applet
+sudo pacman -S networkmanager nm-applet
+
+# Install additional NetworkManager plugins
+sudo pacman -S networkmanager-openvpn network-manager-applet
+```
+
+### Step 8.2: Install Bluetooth Management
+
+**Installing bluetooth management:**
+
+```bash
+# Install Blueman bluetooth manager
+sudo pacman -S blueman
+
+# Install bluetooth support packages
+sudo pacman -S bluez bluez-utils
+```
+
+### Step 8.3: Install Audio Management
+
+**Installing audio management:**
+
+```bash
+# Install PulseAudio volume control GUI
+sudo pacman -S pavucontrol
+
+# Install PulseAudio system tray
+sudo pacman -S pasystray
+
+# Install additional audio tools
+sudo pacman -S paprefs  # PulseAudio preferences
+```
+
+### Step 8.4: Configure System Tray in i3
+
+**Add these lines to your `~/.config/i3/config`:**
+
+```ini
+# Network management
+exec --no-startup-id nm-applet
+
+# Bluetooth management  
+exec --no-startup-id blueman-applet
+
+# Audio system tray
+exec --no-startup-id pasystray
+
+# Volume control keybindings (optional)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Open audio controls
+bindsym $mod+Shift+a exec pavucontrol
+```
+
+Reload your i3 config `$mod+Shift+r`
+
 
