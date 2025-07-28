@@ -24,13 +24,13 @@ Check list of tools that we will install:
 
 8. Set up NetworkManager + nm-applet
 
-9. Configure dual monitors with arandr (for dual monitor setups)
+9. Install thunar + file manager plugins
 
-10. Install thunar + file manager plugins
+10. Set up polkit-gnome and gnome-keyring
 
-11. Set up polkit-gnome and gnome-keyring
+11. Theme everything with lxappearance
 
-12. Theme everything with lxappearance
+12. Configure dual monitors with arandr (for dual monitor setups)
 
 ---
 
@@ -361,5 +361,81 @@ bindsym $mod+Shift+a exec pavucontrol
 ```
 
 Reload your i3 config `$mod+Shift+r`
+
+## Step 9: Install `thunar` + file manager plugins
+
+### Step 9.1: Install `thunar` and core components
+
+**Installing thunar:**
+
+```bash
+# Install Thunar file manager
+sudo pacman -S thunar
+
+# Install essential Thunar plugins
+sudo pacman -S thunar-volman thunar-archive-plugin thunar-media-tags-plugin
+
+# Install additional useful plugins
+sudo pacman -S gvfs gvfs-mtp gvfs-gphoto2 gvfs-smb gvfs-nfs
+```
+
+**Installing archive support:**
+
+```bash
+# For handling zip, rar, 7z files through Thunar
+sudo pacman -S file-roller unzip unrar p7zip
+```
+
+**Installing thumbnail support**
+
+```bash
+# For image and video thumbnails
+sudo pacman -S tumbler ffmpegthumbnailer
+
+# For PDF thumbnails
+sudo pacman -S poppler-glib
+```
+
+### Step 9.2: Set Thunar as default file manager
+
+**Setting up thunar:**
+
+Install xdg-utils:
+
+```bash
+sudo pacman -S xdg-utils
+```
+
+Then run the command:
+
+```bash
+# Set Thunar as default file manager
+xdg-mime default thunar.desktop inode/directory application/x-gnome-saved-search
+```
+
+### Step 9.3: Add Thunar Keybinding to i3
+
+**Add this to your `~/.config/i3/config`:**
+
+```bash
+# File manager keybinding
+bindsym $mod+s exec thunar
+```
+
+### Step 9.4: Configure Thunar
+
+**Launch Thunar and configure:**
+
+1. **Open Thunar:** thunar or press your new keybinding
+
+2. **Go to Edit → Preferences**
+
+3. **In the "Advanced" tab:**
+
+    - Enable "Enable Volume Management"
+
+    - Check "Mount removable drives when hot-plugged"
+
+    - Check "Mount removable media when inserted"
 
 
