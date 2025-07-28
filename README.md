@@ -438,4 +438,139 @@ bindsym $mod+s exec thunar
 
     - Check "Mount removable media when inserted"
 
+## Step 10: Set up `polkit-gnome` and `gnome-keyring`
+
+### Step 10.1: Install required packages
+
+**Installing required packages:**
+
+```bash
+# Install polkit-gnome for authentication dialogs
+sudo pacman -S polkit-gnome
+
+# Install gnome-keyring for password management
+sudo pacman -S gnome-keyring
+
+# Install seahorse (GUI for managing keys and passwords)
+sudo pacman -S seahorse
+
+# Install libsecret for application password storage
+sudo pacman -S libsecret
+```
+
+### Step 10.2: Configure polkit-gnome in i3
+
+**Add this to your `~/.config/i3/config`:**
+
+```ini
+# Authentication agent
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 
+```
+
+```ini
+# GNOME Keyring
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+```
+
+### Step 10.3: Set Up PAM Configuration
+
+**Edit the PAM configuration to unlock keyring on login:**
+
+```bash
+# Edit the login PAM file
+sudo vim /etc/pam.d/login
+```
+
+Add this line at the end:
+
+```ini
+auth       optional     pam_gnome_keyring.so
+session    optional     pam_gnome_keyring.so auto_start
+```
+
+**Edit the passwd PAM file:**
+
+```bash
+sudo vim /etc/pam.d/passwd
+```
+
+Add this line at the end:
+
+```ini
+password   optional     pam_gnome_keyring.so 
+```
+
+### Step 10.4: Configure LightDM for Keyring Integration
+
+**Edit your LightDM configuration:**
+
+```bash
+sudo vim /etc/lightdm/lightdm.conf
+```
+
+Find the `[Seat:*]` section and add:
+
+```ini
+[Seat:*]
+session-setup-script=/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets
+```
+
+### Step 10.5: Set Environment Variables
+
+**Add these to your `~/.profile`:**
+
+```bash
+vim ~/.profile
+```
+
+Add these lines:
+
+```ini
+# GNOME Keyring
+export GNOME_KEYRING_CONTROL=/run/user/$UID/keyring
+export SSH_AUTH_SOCK=$GNOME_KEYRING_CONTROL/ssh
+```
+
+### Step 10.6: Create Keyring Startup Script
+
+**Keyring startup script:**
+
+```bash
+vim ~/.config/i3/scripts/keyring-start.sh 
+```
+
+Add this content:
+
+```bash
+#!/bin/bash
+
+# Kill any existing keyring daemons
+killall gnome-keyring-daemon 2>/dev/null
+
+# Start gnome-keyring-daemon
+eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+export SSH_AUTH_SOCK
+export GNOME_KEYRING_CONTROL
+export GNOME_KEYRING_PID
+```
+
+Make it executable:
+
+```bash
+chmod +x ~/.config/i3/scripts/keyring-start.sh 
+```
+
+Update your i3 config to use the script:
+
+```bash
+# Replace the previous keyring line with:
+exec --no-startup-id ~/.config/i3/scripts/keyring-start.sh 
+```
+
+Restart i3:
+
+```bash
+$mod+Shift+r 
+```
+
 
