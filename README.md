@@ -573,4 +573,76 @@ Restart i3:
 $mod+Shift+r 
 ```
 
+## Step 11: Theme everything with `lxappearance`
+
+### Step 11.1: Installing lxappearance
+
+**Installing lxappearance:**
+
+```bash
+# Install lxappearance
+sudo pacman -S lxappearance
+
+# Install GTK theme engine
+sudo pacman -S gtk-engine-murrine gtk-engines
+
+# Install icon theme dependencies
+sudo pacman -S hicolor-icon-theme
+```
+
+### Step 11.2: Install catppuccin mocha gtk theme
+
+```bash
+# Create themes directory
+mkdir -p ~/.themes
+
+# Download Catppuccin GTK theme
+Download the theme from [here](https://www.pling.com/p/1715555)
+
+# Extract to themes directory
+Follow the manual installation from [Catppuccin GTK theme installation](https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme?tab=readme-ov-file#-manual-installation)
+```
+
+### Step 11.3: Install Papirus Icons
+
+**Installing Icons**
+
+```bash
+# Create icons directory
+mkdir -p ~/.icons
+
+# Download Papirus icon theme (base for Catppuccin)
+sudo pacman -S papirus-icon-theme
+```
+
+### Step 11.4: Install Catppuccin Cursor Theme
+
+**Installing Catppuccin cursor theme**
+
+```bash
+yay -S catppuccin-cursors-git
+```
+
+### Step 11.5: Configure with LXAppearance
+
+1. **Launch LXAppearance:**
+
+```bash
+lxappearance
+```
+
+2. **Widget Tab:**
+
+    - Select: `Catppuccin-Mocha`
+
+3. **Icon Theme Tab:**
+
+    - Select: `Papirus-Dark`
+
+4. **Mouse Cursor Tab:**
+
+    - Select: `Catppuccin-Mocha-Dark`
+
+## Step 12: Install and set up flameshot
+
 
