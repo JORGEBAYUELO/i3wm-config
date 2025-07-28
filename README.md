@@ -643,6 +643,46 @@ lxappearance
 
     - Select: `Catppuccin-Mocha-Dark`
 
-## Step 12: Install and set up flameshot
+## Step 12: Install and set up `Flameshot`
+
+### Step 12.1: Install Flameshot and additional dependencies
+
+**Installing flameshot**
+
+```bash
+# Install flameshot tool
+sudo pacman -S flameshot
+
+# Install additional dependencies
+sudo pacman -S xclip  # For clipboard integration
+```
+
+### Step 12.2: Configure Flameshot
+
+**Add flameshot keybindings to i3:**
+
+add these to your `~/.config/i3/config`:
+
+```bash
+# Screenshot keybindings
+
+# Flameshot - Interactive screenshot with GUI
+bindsym Print exec --no-startup-id flameshot gui
+
+# Flameshot - Full screen screenshot to clipboard  
+bindsym $mod+Print exec --no-startup-id flameshot full -c
+
+# Flameshot - Full screen screenshot to file
+bindsym $mod+Shift+Print exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
+```
+
+### Step 12.3: Star Flameshot with i3
+
+**Add to your `~/.config/i3/config`:**
+
+```bash
+# Start flameshot daemon
+exec --no-startup-id flameshot
+```
 
 
