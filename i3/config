@@ -16,6 +16,9 @@ exec --no-startup-id dunst
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always feh --bg-scale ~/.config/wallpapers/wallpaper-theme-converter.png
 
+# Start flameshot daemon
+exec --no-startup-id flameshot
+
 # Authentication agent
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
