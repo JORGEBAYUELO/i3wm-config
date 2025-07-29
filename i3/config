@@ -274,3 +274,6 @@ default_floating_border pixel 2
 
 # Hide borders adjacent to screen edges
 #hide_edge_borders smart
+
+# Border configuration for Ghostty Terminal
+for_window [class="ghostty"] border pixel 2
