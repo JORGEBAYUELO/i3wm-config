@@ -16,6 +16,9 @@ exec --no-startup-id dunst
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always feh --bg-scale ~/.config/wallpapers/wallpaper-theme-converter.png
 
+# Handles windows autotiling
+exec_always --no-startup-id autotiling
+
 # Start flameshot daemon
 exec --no-startup-id flameshot
 
