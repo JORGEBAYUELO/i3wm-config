@@ -8,7 +8,7 @@ Check list of tools that we will install:
 
 ### Configuration Workflow
 
-1. Install i3wm + i3blocks
+1. Install i3wm + i3blocks + autotiling
 
 2. Install and set up lightdm + lightdm-webkit2-greeter + webkit2gtk
 
@@ -54,6 +54,12 @@ Install dmenu (we will later change this for Rofi)
 
 ```bash
 sudo pacman -S dmenu
+```
+
+Install autotiling
+
+```bash
+yay -S autotiling
 ```
 
 ## Step 2: Install and set up `lightdm + lightdm-webkit2-greeter + webkit2gtk`
