@@ -30,7 +30,9 @@ Check list of tools that we will install:
 
 11. Theme everything with lxappearance
 
-12. Configure dual monitors with arandr (for dual monitor setups)
+12. Install and set up Flameshot (screenshots tool)
+
+13. Configure dual monitors with arandr (for dual monitor setups)
 
 ---
 
