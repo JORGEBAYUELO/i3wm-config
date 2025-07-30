@@ -698,3 +698,54 @@ Reload i3 configuration:
 ```bash
 $mod+Shift+r
 ```
+
+## Step 13: Configure monitors with `xrandr` or `arandr`
+
+### Step 13.1: Install xrandr
+
+**Installing xrandr:**
+
+```bash
+sudo pacman -S xorg-xrandr
+```
+
+**Verify installation:**
+
+```bash
+xrandr --version
+```
+
+### Step 13.2: Setting up monitors
+
+**Using xrandr to show only active displays:**
+
+```bash
+xrandr --query | grep " connected"
+```
+
+**Set refresh rate:**
+
+```bash
+xrandr --output DP-1 --mode 1920x1080 --rate 144
+```
+
+Make sure to replace `DP-1` with your actual display name and adjust resolution/rate accordingly.
+
+### Step 13.3: Make it permanent
+
+**Make the configuration permanent on your i3wm config**
+
+To ensure your refresh rate settings persist after reboot, add the xrandr command to your i3 config file:
+
+```bash
+# Add this to your ~/.config/i3/config
+exec --no-startup-id xrandr --output DP-1 --mode 1920x1080 --rate 144
+```
+
+### Step 13.4: Gui option - arandr
+
+**Installing arandr:**
+
+```bash
+sudo pacman -S arandr
+```
