@@ -10,7 +10,7 @@ Check list of tools that we will install:
 
 1. Install i3wm + i3blocks + autotiling
 
-2. Install and set up lightdm + lightdm-webkit2-greeter + webkit2gtk
+2. Install and set up lightdm + lightdm-gkt-greeter + web-greeter
 
 3. Install and setup up picom for compositing
 
@@ -62,9 +62,9 @@ Install autotiling
 yay -S autotiling
 ```
 
-## Step 2: Install and set up `lightdm + lightdm-webkit2-greeter + webkit2gtk`
+## Step 2: Install and set up `lightdm + lightdm-gkt-greeter + web-greeter`
 
-### Step 2.1: Installing lightdm + lightdm-webkit2-greeter + webkit2gtk
+### Step 2.1: Installing lightdm + lightdm-gtk-greeter + web-greeter
 
 **Install lightdm:**
 
@@ -72,16 +72,16 @@ yay -S autotiling
 sudo pacman -S lightdm
 ```
 
-**Install lightdm-webkit2-greeter:**
+**Install lightdm-gtk-greeter:**
 
 ```bash
-yay -S lightdm-webkit2-greeter
+sudo pacman -S lightdm-gtk-greeter
 ```
 
-**Install webkit2gtk dependency:**
+**Install web-greeter:**
 
 ```bash
-sudo pacman -S webkit2gtk
+yay -S web-greeter
 ```
 
 ### Step 2.2: Configure lightdm.conf
@@ -96,7 +96,7 @@ sudo vim /etc/lightdm/lightdm.conf
 ```ini
 [Seat:*]
 #greeter-session=example-gtk-gnome
-greeter-session=lightdm-webkit2-greeter
+greeter-session=lightdm-gtk-greeter
 #user-session=default
 user-session=i3
 ```
@@ -112,6 +112,32 @@ sudo systemctl enable lightdm
 ```bash
 sudo systemctl start lightdm
 ```
+
+### Step 2.3: Configure web-greeter in lightdm
+
+**Installing a theme:**
+
+Search for the theme you want to install in [Web Greeter](https://web-greeter-page.vercel.app/themes). In my case I chose the theme called [Shikai](https://github.com/TheWisker/Shikai).
+
+After installing the theme, follow the steps to configure it with lightdm.
+
+**Change lightdm-gtk-greeter to web-greeter:**
+
+in your lightdm.conf file
+
+```ini
+[Seat:*]
+#greeter-session=example-gtk-gnome
+greeter-session=web-greeter
+#user-session=default
+user-session=i3
+```
+
+**Select the theme you have installed:**
+
+in theo `/etc/lightdm/web-greeter.yaml` file, which hosts the greeter's configuration:
+
+- Under **branding**, set **theme** to shikai (or whatever is the name of the theme of your choice): `theme: shikai`
 
 ## Step 3: Install and set up `Picom`
 
